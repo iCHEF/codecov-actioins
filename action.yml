@@ -1,0 +1,5 @@
+  name: "Codecov Action"
+  description: "upload coverage.xml when push or pull request"
+
+  runs:
+    main: "/entrypoint.sh"
