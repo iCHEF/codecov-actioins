@@ -4,6 +4,7 @@ echo "run script"
 
 curl -s https://codecov.io/bash > codecov;
 VERSION=$(grep 'VERSION=\"[0-9\.]*\"' codecov | cut -d'"' -f2);
+VERSION=1.11.0
 echo $VERSION
 
 for i in 1 256 512
