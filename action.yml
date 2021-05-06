@@ -3,7 +3,5 @@
   runs:
       using: composite
       steps:
-          - run: echo "test start"
-            shell: bash
           - run: ${{ github.action_path }}/entrypoint.sh
             shell: bash
