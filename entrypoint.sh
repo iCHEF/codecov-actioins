@@ -9,11 +9,15 @@ echo $VERSION
 
 for i in 1 256 512
 do
-RESULT=$(shasum -a $i -c <(curl -s "https://raw.githubusercontent.com/codecov/codecov-bash/${VERSION}/SHA${i}SUM" | head -n 1))
-  if [[ ${RESULT} == "codecov: OK" ]]
+shasum -a $i -c <(curl -s "https://raw.githubusercontent.com/codecov/codecov-bash/${VERSION}/SHA${i}SUM" | head -n 1)
+  if [[ $? -eq 0 ]]
   then
     echo "success"
     bash <(curl -s https://codecov.io/bash) -f "./coverage/cobertura-coverage.xml"
+    exit 0
+  else
+    echo "checksum fail"
+    exit 1
   fi
 done
 rm codecov
